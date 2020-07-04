@@ -1,0 +1,6 @@
+{
+    "name": "wbensz/api-client",
+    "require": {"nyholm/psr7": "1.3.0"},
+    "autoload": {
+   	    "psr-4": {"ApiClient\\": "src/"}     }
+}
