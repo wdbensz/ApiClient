@@ -7,10 +7,16 @@ use Nyholm\Psr7\ {Factory, Request, Response, Stream };
 
 class ApiClient
 {
-    public static function send(Request $request)
+    public static function send(Request $request, Authenticator $authenticator = null)
     {
+        if($authenticator){
+            $request = $request->withAddedHeader($authenticator->addHeader());
+        }
+
         $method = strtoupper($request->getMethod());
-        $headers = $request->getHeaders();
+
+
+        $requestHeaders = HeaderParser::parseRequestHeaders($request->getHeaders());
         $body = (string)$request->getBody();
 
         switch ($method) {
@@ -68,6 +74,7 @@ class ApiClient
 
         $ch = curl_init();
         curl_setopt_array($ch, ($options));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $requestHeaders);
         $curl_result = curl_exec($ch);
         if (FALSE === $curl_result)
         {

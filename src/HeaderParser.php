@@ -25,4 +25,9 @@ class HeaderParser
         return $headers;
 
     }
+
+    public static function parseRequestHeaders($request_headers) {
+        $headers = array_map('end', $request_headers);
+        return $headers;
+    }
 }
