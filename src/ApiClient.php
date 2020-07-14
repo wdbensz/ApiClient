@@ -7,7 +7,7 @@ use Nyholm\Psr7\ {Factory, Request, Response, Stream };
 
 class ApiClient
 {
-    public static function send(Request $request, Authenticator $authenticator = null)
+    public static function send(Request $request, AuthMethod $authenticator = null)
     {
         if($authenticator){
             $request = $request->withAddedHeader($authenticator->addHeader());

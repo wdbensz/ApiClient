@@ -20,8 +20,4 @@ $bodyStream = $responseInstance->getBody();
 $request = $psr17Factory->createRequest('GET', 'https://api.agify.io/');
 $request = $request->withBody($bodyStream);
 
-// example of a JWT from jwt.io
-$token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
-$Authenticator = new AuthMethod(new Jwt($token));
-
 $ApiResponse = ApiClient::send($request);
